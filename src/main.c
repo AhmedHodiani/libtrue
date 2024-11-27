@@ -56,18 +56,6 @@ void stack_insert(t_stack *stack, t_node *node, ssize_t index)
 	return ;
 }
 
-void stack_log(t_stack stack)
-{
-	if (!stack.head)
-		return ;
-	t_node *node = stack.head;
-	while (node)
-	{
-		printf("%s\n", (char *)node->content);
-		node = node->next;
-	}
-}
-
 t_stack stack_init(void)
 {
 	t_stack stack;
@@ -87,5 +75,6 @@ int main()
 	stack_insert(&stack, node1, -1);
 	stack_insert(&stack, node2, -1);
 	stack_insert(&stack, node3, 0);
-	stack_log(stack);
+	stack_log_detailed(stack);
+	// stack_log(stack);
 }

@@ -6,7 +6,7 @@
 /*   By: ataher <ataher@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 09:28:19 by ataher            #+#    #+#             */
-/*   Updated: 2024/11/27 14:32:51 by ataher           ###   ########.fr       */
+/*   Updated: 2024/11/27 15:30:07 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ typedef struct s_stack
 	t_node	*tail;
 	int		size;
 }	t_stack;
+
+
+// loggers
+void stack_log(t_stack stack);
+void stack_log_detailed(t_stack stack);
 
 
 #endif
