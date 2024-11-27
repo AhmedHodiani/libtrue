@@ -68,6 +68,21 @@ void stack_push(t_stack *stack, t_node *node)
 	return stack_insert(stack, node, -1);
 }
 
+void stack_clear(t_stack *stack)
+{
+	t_node *current = stack->head;
+	while (current)
+	{
+		t_node *next = current->next;
+		free(current->content);
+		free(current);
+		current = next;
+	}
+	stack->head = NULL;
+	stack->tail = NULL;
+	stack->size = 0;
+}
+
 t_stack stack_init(void)
 {
 	t_stack stack;
@@ -77,19 +92,24 @@ t_stack stack_init(void)
 
 	stack.insert = stack_insert;
 	stack.push = stack_push;
+	stack.clear = stack_clear;
 	stack.log.simple = stack_log_simple;
 	stack.log.detailed = stack_log_detailed;
 	return (stack);
 }
 
+
+
 int main()
 {
 	t_stack stack = stack_init();
-	t_node *node1 = node_init("Hello");
-	t_node *node2 = node_init("Hi");
-	t_node *node3 = node_init("gg");
-	t_node *node4 = node_init("me");
-	t_node *node5 = node_init("r");
+
+
+
+	t_node *node1 = node_init(strdup("Hello"));
+	t_node *node2 = node_init(strdup("Hi"));
+	t_node *node3 = node_init(strdup("gg"));
+	t_node *node4 = node_init(strdup("me"));
 
 	stack.push(&stack, node1);
 	stack.push(&stack, node2);
@@ -97,4 +117,5 @@ int main()
 	stack.push(&stack, node4);
 
 	stack.log.detailed(stack);
+	stack.clear(&stack);
 }
