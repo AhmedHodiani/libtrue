@@ -13,7 +13,14 @@ t_node *node_init(void *content)
 
 void stack_insert(t_stack *stack, t_node *node, ssize_t index)
 {
-	if (index == -1 || index == stack->size)
+	if (index < 0)
+		index += stack->size + 1;
+	if (index < 0)
+	{
+		printf("Index out of range\n");
+		return ;
+	}
+	if (index == stack->size)
 	{
 		if (!stack->head)
 			stack->head = node;
@@ -81,9 +88,13 @@ int main()
 	t_node *node1 = node_init("Hello");
 	t_node *node2 = node_init("Hi");
 	t_node *node3 = node_init("gg");
+	t_node *node4 = node_init("me");
+	t_node *node5 = node_init("r");
 
 	stack.push(&stack, node1);
 	stack.push(&stack, node2);
 	stack.insert(&stack, node3, 0);
+	stack.push(&stack, node4);
+
 	stack.log.detailed(stack);
 }
