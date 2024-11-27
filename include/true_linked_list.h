@@ -6,7 +6,7 @@
 /*   By: ataher <ataher@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 09:28:19 by ataher            #+#    #+#             */
-/*   Updated: 2024/11/27 15:30:07 by ataher           ###   ########.fr       */
+/*   Updated: 2024/11/27 15:54:05 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,27 @@ typedef struct s_node
 	struct s_node	*prev;
 }	t_node;
 
+struct s_stack;
+
+typedef struct s_stack_log {
+	void	(*simple)(struct s_stack stack);
+	void	(*detailed)(struct s_stack stack);
+}	t_stack_log;
+
 typedef struct s_stack
 {
 	t_node	*head;
 	t_node	*tail;
 	int		size;
+
+	void	(*insert)(struct s_stack *stack, t_node *node, ssize_t index);
+	void	(*push)(struct s_stack *stack, t_node *node);
+	t_stack_log	log;
 }	t_stack;
 
 
 // loggers
-void stack_log(t_stack stack);
+void stack_log_simple(t_stack stack);
 void stack_log_detailed(t_stack stack);
-
 
 #endif

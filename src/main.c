@@ -56,12 +56,22 @@ void stack_insert(t_stack *stack, t_node *node, ssize_t index)
 	return ;
 }
 
+void stack_push(t_stack *stack, t_node *node)
+{
+	return stack_insert(stack, node, -1);
+}
+
 t_stack stack_init(void)
 {
 	t_stack stack;
 	stack.head = NULL;
 	stack.tail = NULL;
 	stack.size = 0;
+
+	stack.insert = stack_insert;
+	stack.push = stack_push;
+	stack.log.simple = stack_log_simple;
+	stack.log.detailed = stack_log_detailed;
 	return (stack);
 }
 
@@ -72,9 +82,8 @@ int main()
 	t_node *node2 = node_init("Hi");
 	t_node *node3 = node_init("gg");
 
-	stack_insert(&stack, node1, -1);
-	stack_insert(&stack, node2, -1);
-	stack_insert(&stack, node3, 0);
-	stack_log_detailed(stack);
-	// stack_log(stack);
+	stack.push(&stack, node1);
+	stack.push(&stack, node2);
+	stack.insert(&stack, node3, 0);
+	stack.log.detailed(stack);
 }
