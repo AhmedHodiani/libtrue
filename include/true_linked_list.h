@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libtrue.h                                          :+:      :+:    :+:   */
+/*   true_linked_list.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ataher <ataher@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/16 09:09:09 by ataher            #+#    #+#             */
-/*   Updated: 2024/11/16 09:28:13 by ataher           ###   ########.fr       */
+/*   Created: 2024/11/16 09:28:19 by ataher            #+#    #+#             */
+/*   Updated: 2024/11/27 13:41:41 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBTRUE_H
-# define LIBTRUE_H
+#ifndef LIBTRUE_LINKED_LIST_H
+# define LIBTRUE_LINKED_LIST_H
 
-# ifndef BOOL
-#  define BOOL int
-#  define TRUE 1
-#  define FALSE 0
-# endif
 
-#include "true_linked_list.h"
 
 #endif
