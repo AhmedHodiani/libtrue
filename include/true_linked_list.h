@@ -6,7 +6,7 @@
 /*   By: ataher <ataher@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 09:28:19 by ataher            #+#    #+#             */
-/*   Updated: 2024/11/27 16:20:32 by ataher           ###   ########.fr       */
+/*   Updated: 2024/11/27 17:11:16 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_stack
 	void	(*insert)(struct s_stack *stack, t_node *node, ssize_t index);
 	void	(*push)(struct s_stack *stack, t_node *node);
 	void	(*clear)(struct s_stack *stack);
+	void	(*pop)(struct s_stack *stack, ssize_t index);
 	t_stack_log	log;
 }	t_stack;
 

@@ -83,6 +83,57 @@ void stack_clear(t_stack *stack)
 	stack->size = 0;
 }
 
+void node_clear(t_node *node)
+{
+	free(node->content);
+	free(node);
+}
+
+void stack_pop(t_stack *stack, ssize_t index)
+{
+	if (!stack->head)
+		return ;
+	if (index < 0)
+		index += stack->size;
+	if (index < 0 || index >= stack->size)
+	{
+		printf("Index out of range\n");
+		return ;
+	}
+	if (index == 0)
+	{
+		t_node *node = stack->head;
+		stack->head = node->next;
+		stack->head->prev = NULL;
+		node_clear(node);
+		stack->size--;
+	}
+	else if (index == stack->size - 1)
+	{
+		t_node *node = stack->tail;
+		stack->tail = node->prev;
+		stack->tail->next = NULL;
+		node_clear(node);
+		stack->size--;
+	}
+	else
+	{
+		ssize_t i = 0;
+		t_node *current = stack->head;
+		while (i < index)
+		{
+			current = current->next;
+			i++;
+		}
+		t_node *prev = current->prev;
+		t_node *next = current->next;
+		prev->next = next;
+		next->prev = prev;
+		node_clear(current);
+	}
+	stack->size--;
+}
+
 t_stack stack_init(void)
 {
 	t_stack stack;
@@ -92,6 +143,7 @@ t_stack stack_init(void)
 
 	stack.insert = stack_insert;
 	stack.push = stack_push;
+	stack.pop = stack_pop;
 	stack.clear = stack_clear;
 	stack.log.simple = stack_log_simple;
 	stack.log.detailed = stack_log_detailed;
@@ -115,6 +167,9 @@ int main()
 	stack.push(&stack, node2);
 	stack.insert(&stack, node3, 0);
 	stack.push(&stack, node4);
+
+	stack.log.detailed(stack);
+	stack.pop(&stack, -5);
 
 	stack.log.detailed(stack);
 	stack.clear(&stack);
