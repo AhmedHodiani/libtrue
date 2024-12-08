@@ -6,7 +6,7 @@
 /*   By: ataher <ataher@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 09:28:19 by ataher            #+#    #+#             */
-/*   Updated: 2024/11/27 17:11:16 by ataher           ###   ########.fr       */
+/*   Updated: 2024/12/08 12:30:06 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,21 @@ typedef struct s_stack
 // loggers
 void stack_log_simple(t_stack stack);
 void stack_log_detailed(t_stack stack);
+
+// init
+t_stack stack_init(void);
+t_node *node_init(void *content);
+
+// clear
+void stack_clear(t_stack *stack);
+void node_clear(t_node *node);
+
+// pop
+void stack_pop(t_stack *stack, ssize_t index);
+
+// insert
+void stack_insert(t_stack *stack, t_node *node, ssize_t index);
+void stack_push(t_stack *stack, t_node *node);
+
 
 #endif
