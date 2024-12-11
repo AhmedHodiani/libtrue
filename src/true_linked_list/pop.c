@@ -6,7 +6,7 @@
 /*   By: ataher <ataher@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 12:26:24 by ataher            #+#    #+#             */
-/*   Updated: 2024/12/08 12:26:29 by ataher           ###   ########.fr       */
+/*   Updated: 2024/12/11 14:22:02 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,33 +26,41 @@ void stack_pop(t_stack *stack, ssize_t index)
 	if (index == 0)
 	{
 		t_node *node = stack->head;
-		stack->head = node->next;
-		stack->head->prev = NULL;
-		node_clear(node);
-		stack->size--;
-	}
-	else if (index == stack->size - 1)
-	{
-		t_node *node = stack->tail;
-		stack->tail = node->prev;
-		stack->tail->next = NULL;
-		node_clear(node);
-		stack->size--;
-	}
-	else
-	{
-		ssize_t i = 0;
-		t_node *current = stack->head;
-		while (i < index)
+		// printf("node to del %d\n", node->content);
+		if (node->next)
 		{
-			current = current->next;
-			i++;
+			stack->head = node->next;
+			stack->head->prev = NULL;
 		}
-		t_node *prev = current->prev;
-		t_node *next = current->next;
-		prev->next = next;
-		next->prev = prev;
-		node_clear(current);
+		else {
+			stack->head = NULL;
+			stack->tail = NULL;
+		}
+		node_clear(node);
+		stack->size--;
 	}
-	stack->size--;
+	// else if (index == stack->size - 1)
+	// {
+	// 	t_node *node = stack->tail;
+	// 	stack->tail = node->prev;
+	// 	stack->tail->next = NULL;
+	// 	node_clear(node);
+	// 	stack->size--;
+	// }
+	// else
+	// {
+	// 	ssize_t i = 0;
+	// 	t_node *current = stack->head;
+	// 	while (i < index)
+	// 	{
+	// 		current = current->next;
+	// 		i++;
+	// 	}
+	// 	t_node *prev = current->prev;
+	// 	t_node *next = current->next;
+	// 	prev->next = next;
+	// 	next->prev = prev;
+	// 	node_clear(current);
+	// 	stack->size--;
+	// }
 }
