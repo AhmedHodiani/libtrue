@@ -6,7 +6,7 @@
 /*   By: ataher <ataher@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 15:29:42 by ataher            #+#    #+#             */
-/*   Updated: 2024/11/27 15:45:32 by ataher           ###   ########.fr       */
+/*   Updated: 2024/12/11 12:33:08 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void stack_log_detailed(t_stack stack)
 	int index = 0;
 	while (node)
 	{
-		printf("[%d] %p: %s\n", index, node, (char *)node->content);
+		printf("[%d] %p: %d\n", index, node, node->content);
 		node = node->next;
 		if (node)
 			printf("\t  ↑↓\n");
@@ -33,12 +33,12 @@ void stack_log_detailed(t_stack stack)
 
 void stack_log_simple(t_stack stack)
 {
-	if (!stack.head)
-		return ;
 	t_node *node = stack.head;
+	printf("[ ");
 	while (node)
 	{
-		printf("%s\n", (char *)node->content);
+		printf("%d ", node->content);
 		node = node->next;
 	}
+	printf("]\n");
 }

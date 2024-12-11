@@ -12,7 +12,9 @@ TRUE_LINKED_LIST_SRCS = src/true_linked_list/init.c \
 						src/true_linked_list/insert.c \
 						src/true_linked_list/clear.c \
 						src/true_linked_list/pop.c \
-						src/true_linked_list/loggers.c
+						src/true_linked_list/loggers.c \
+						src/true_linked_list/shift.c \
+						src/true_linked_list/dup.c
 
 TRUE_LINKED_LIST_OBJS		=	$(TRUE_LINKED_LIST_SRCS:src/true_linked_list/%.c=obj/%.o)
 # ================================================================================== #

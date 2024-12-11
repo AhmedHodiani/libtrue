@@ -6,7 +6,7 @@
 /*   By: ataher <ataher@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 12:24:02 by ataher            #+#    #+#             */
-/*   Updated: 2024/12/08 12:25:23 by ataher           ###   ########.fr       */
+/*   Updated: 2024/12/11 12:37:46 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,14 @@ t_stack stack_init(void)
 	stack.push = stack_push;
 	stack.pop = stack_pop;
 	stack.clear = stack_clear;
+	stack.get = stack_get;
+	stack.shift = stack_shift;
 	stack.log.simple = stack_log_simple;
 	stack.log.detailed = stack_log_detailed;
 	return (stack);
 }
 
-t_node *node_init(void *content)
+t_node *node_init(int content)
 {
 	t_node *node = malloc(sizeof(t_node));
 	if (!node)
@@ -36,5 +38,6 @@ t_node *node_init(void *content)
 	node->content = content;
 	node->next = NULL;
 	node->prev = NULL;
+	node->dup = node_dup;
 	return (node);
 }

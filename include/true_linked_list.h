@@ -6,7 +6,7 @@
 /*   By: ataher <ataher@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 09:28:19 by ataher            #+#    #+#             */
-/*   Updated: 2024/12/08 12:30:06 by ataher           ###   ########.fr       */
+/*   Updated: 2024/12/11 12:38:52 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@
 
 typedef struct s_node
 {
-	void			*content;
+	int				content;
 	struct s_node	*next;
 	struct s_node	*prev;
+	struct s_node *(*dup)(struct s_node *node);
 }	t_node;
 
 struct s_stack;
@@ -42,6 +43,8 @@ typedef struct s_stack
 	void	(*push)(struct s_stack *stack, t_node *node);
 	void	(*clear)(struct s_stack *stack);
 	void	(*pop)(struct s_stack *stack, ssize_t index);
+	void	(*shift)(struct s_stack *stack, int rounds);
+	t_node	*(*get)(struct s_stack *stack, int index);
 	t_stack_log	log;
 }	t_stack;
 
@@ -52,7 +55,7 @@ void stack_log_detailed(t_stack stack);
 
 // init
 t_stack stack_init(void);
-t_node *node_init(void *content);
+t_node *node_init(int content);
 
 // clear
 void stack_clear(t_stack *stack);
@@ -65,5 +68,11 @@ void stack_pop(t_stack *stack, ssize_t index);
 void stack_insert(t_stack *stack, t_node *node, ssize_t index);
 void stack_push(t_stack *stack, t_node *node);
 
+// get
+t_node *stack_get(t_stack *stack, int index);
+void stack_shift(t_stack *stack, int rounds);
+
+// dup
+t_node *node_dup(t_node *node);
 
 #endif
