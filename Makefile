@@ -25,11 +25,11 @@ OBJS = $(TRUE_LINKED_LIST_OBJS)
 all: $(LIB_NAME)
 
 $(LIB_NAME): $(OBJS)
-	ar rcs $@ $^
+	@ar rcs $@ $^
 
 obj/%.o: src/true_linked_list/%.c
-	mkdir -p obj
-	$(CC) $(CFLAGS) -c -o $@ $<
+	@mkdir -p obj
+	@$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
 	rm -rf obj
