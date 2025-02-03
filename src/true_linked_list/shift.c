@@ -3,69 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   shift.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ataher <ataher@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ataher <ataher@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:05:01 by ataher            #+#    #+#             */
-/*   Updated: 2024/12/11 12:30:22 by ataher           ###   ########.fr       */
+/*   Updated: 2025/01/20 13:23:39 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/true_linked_list.h"
 
-t_node *stack_get(t_stack *stack, int index)
+void	shift_left(t_stack *stack)
 {
-	if (index < 0)
-		index += stack->size;
-	if (index < 0 || index >= stack->size)
-	{
-		printf("Index out of range\n");
-		return (NULL);
-	}
-	t_node *node = stack->head;
-	int i = 0;
-	while (node)
-	{
-		if (i == index)
-			return (node);
-		node = node->next;
-		i++;
-	}
-	return (NULL);
+	t_node	*head_temp;
+	t_node	*tail_temp;
+
+	head_temp = stack->head;
+	tail_temp = stack->tail;
+	tail_temp->next = head_temp;
+	head_temp->prev = tail_temp;
+	stack->head = head_temp->next;
+	stack->tail = head_temp;
+	head_temp->next->prev = NULL;
+	head_temp->next = NULL;
 }
 
-void stack_shift(t_stack *stack, int rounds)
+void	shift_right(t_stack *stack)
 {
-	t_node *head_temp = stack->head;
-	t_node *tail_temp = stack->tail;
+	t_node	*head_temp;
+	t_node	*tail_temp;
 
+	head_temp = stack->head;
+	tail_temp = stack->tail;
+	head_temp->prev = tail_temp;
+	tail_temp->next = head_temp;
+	stack->head = tail_temp;
+	stack->tail = tail_temp->prev;
+	tail_temp->prev->next = NULL;
+	tail_temp->prev = NULL;
+}
+
+int	stack_shift(t_stack *stack, int rounds)
+{
 	if (rounds > 0)
 	{
-
-		head_temp->prev = tail_temp;
-		tail_temp->next = head_temp;
-
-		stack->head = tail_temp;
-		stack->tail = tail_temp->prev;
-
-		tail_temp->prev->next = NULL;
-		tail_temp->prev = NULL;
-
+		shift_right(stack);
 		rounds--;
 	}
 	else if (rounds < 0)
 	{
-
-		tail_temp->next = head_temp;
-		head_temp->prev = tail_temp;
-
-		stack->head = head_temp->next;
-		stack->tail = head_temp;
-
-		head_temp->next->prev = NULL;
-		head_temp->next = NULL;
-
+		shift_left(stack);
 		rounds++;
 	}
-	else return ;
+	else
+		return (1);
 	stack_shift(stack, rounds);
+	return (0);
 }

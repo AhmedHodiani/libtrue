@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   dup.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ataher <ataher@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ataher <ataher@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:36:11 by ataher            #+#    #+#             */
-/*   Updated: 2024/12/11 12:38:08 by ataher           ###   ########.fr       */
+/*   Updated: 2025/01/20 13:28:51 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/true_linked_list.h"
 
-t_node *node_dup(t_node *node)
+t_node	*node_dup(t_node *node)
 {
 	return (node_init(node->content));
 }

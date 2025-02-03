@@ -1,38 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pop.c                                              :+:      :+:    :+:   */
+/*   find.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ataher <ataher@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/08 12:26:24 by ataher            #+#    #+#             */
-/*   Updated: 2025/01/20 14:02:34 by ataher           ###   ########.fr       */
+/*   Created: 2025/01/18 09:08:59 by ataher            #+#    #+#             */
+/*   Updated: 2025/01/20 16:52:01 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/true_linked_list.h"
 
-void	stack_pop(t_stack *stack, int index)
+int	stack_find(t_stack stack, int content)
+{
+	int	i;
+
+	i = 0;
+	while (stack.head)
+	{
+		if (stack.head->content == content)
+			return (i);
+		stack.head = stack.head->next;
+		i++;
+	}
+	return (-1);
+}
+
+t_node	*stack_get(t_stack *stack, int index)
 {
 	t_node	*node;
+	int		i;
 
-	index = calc_reletive_index(stack, index);
-	if (index == -1)
-		return ;
-	if (index == 0)
+	if (index < 0)
+		index += stack->size;
+	if (index < 0 || index >= stack->size)
+		return (NULL);
+	node = stack->head;
+	i = 0;
+	while (node)
 	{
-		node = stack->head;
-		if (node->next)
-		{
-			stack->head = node->next;
-			stack->head->prev = NULL;
-		}
-		else
-		{
-			stack->head = NULL;
-			stack->tail = NULL;
-		}
-		node_clear(node);
-		stack->size--;
+		if (i == index)
+			return (node);
+		node = node->next;
+		i++;
 	}
+	return (NULL);
 }

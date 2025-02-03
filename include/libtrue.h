@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libtrue.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ataher <ataher@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ataher <ataher@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 09:09:09 by ataher            #+#    #+#             */
-/*   Updated: 2024/11/16 09:28:13 by ataher           ###   ########.fr       */
+/*   Updated: 2025/01/20 14:06:36 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@
 #  define FALSE 0
 # endif
 
-#include "true_linked_list.h"
+# include "true_linked_list.h"
 
 #endif
